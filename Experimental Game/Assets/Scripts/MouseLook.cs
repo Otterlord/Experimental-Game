@@ -17,13 +17,6 @@ public class MouseLook : MonoBehaviour
     private float rotX;
     private float rotY;
 
-    private PickUpObject o;
-
-    private void Start()
-    {
-        o = GetComponent<PickUpObject>();
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -36,6 +29,5 @@ public class MouseLook : MonoBehaviour
         transform.eulerAngles = new Vector3(transform.eulerAngles.x, rotY, transform.eulerAngles.z);
         camera.localEulerAngles = new Vector3(rotX, 0, 0);
 
-        o.UpdateHeldObjects();
     }
 }

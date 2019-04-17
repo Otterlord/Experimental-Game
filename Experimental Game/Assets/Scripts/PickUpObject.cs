@@ -15,7 +15,7 @@ public class PickUpObject : MonoBehaviour
     private GameObject heldObject;
 
     // Update is called once per frame
-    public void UpdateHeldObjects()
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.E) && heldObject == null)
         {
