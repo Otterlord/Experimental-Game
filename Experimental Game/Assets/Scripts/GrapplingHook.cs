@@ -9,6 +9,7 @@ public class GrapplingHook : MonoBehaviour
     public float travelSpeed;
 
     public LayerMask grappleStuff;
+    public float safeZone = 2;
 
     // Other stuff
     private Vector3 target;
@@ -16,11 +17,13 @@ public class GrapplingHook : MonoBehaviour
 
     // References
     private Player player;
+    private CharacterController controller;
 
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<Player>();   
+        player = GetComponent<Player>();
+        controller = GetComponent<CharacterController>(); 
     }
 
     // Update is called once per frame
@@ -36,14 +39,21 @@ public class GrapplingHook : MonoBehaviour
         }
         if (going)
         {
-            if (transform.position == target)
-            {
-                player.enabled = true;
-                going = false;
-                return;
-            }
-
-            transform.Translate((target - transform.position).normalized * travelSpeed * Time.deltaTime);
+            controller.Move((target - transform.position).normalized * travelSpeed * Time.deltaTime);
         }
+
+       
+    }
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        if (hit.normal.y < 0.5f)
+        {
+            going = false;
+            player.Reset();
+            player.enabled = true;
+        }
+
+
     }
 }

@@ -35,6 +35,11 @@ public class Player : MonoBehaviour
         Cursor.visible = false;
     }
 
+    public void Reset()
+    {
+        velocity = Vector3.zero;
+    }
+
     // Update is called once per frame
     void Update()
     {
