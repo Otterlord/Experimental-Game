@@ -134,7 +134,7 @@ GameObject:
 --- !u!199 &156956472
 ParticleSystemRenderer:
   serializedVersion: 6
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -5457,6 +5457,15 @@ PrefabInstance:
     - target: {fileID: 1729984830, guid: 5ead411fcbc1c9a478a5876628a65038, type: 3}
       propertyPath: airDrag
       value: 0.985
+      objectReference: {fileID: 0}
+    - target: {fileID: 890459533, guid: 5ead411fcbc1c9a478a5876628a65038, type: 3}
+      propertyPath: m_Radius
+      value: 1.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 1837355463131850295, guid: 5ead411fcbc1c9a478a5876628a65038,
+        type: 3}
+      propertyPath: m_Radius
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5ead411fcbc1c9a478a5876628a65038, type: 3}
