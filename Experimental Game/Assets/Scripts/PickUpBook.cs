@@ -30,14 +30,14 @@ public class PickUpBook : MonoBehaviour
                 print("Can't hold more than 5 books!");
             }
         }
-        else if (Input.GetMouseButtonDown(1))
+        else if (Input.GetMouseButtonDown(1) || Input.GetKeyDown(KeyCode.E))
         {
             if (books.Count <= 0) return;
             if (currentIndex >= 0 && currentIndex < books.Count)
             {
                 books[currentIndex].Drop(transform.position);
                 books.RemoveAt(currentIndex);
-                currentIndex--;
+                currentIndex++;
             }
         }
 
