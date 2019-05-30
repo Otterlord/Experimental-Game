@@ -7,6 +7,7 @@ public class PickUpBook : MonoBehaviour
     public LayerMask book;
 
     private List<Book> books = new List<Book>();
+    private int currentIndex = 0;
 
     // Update is called once per frame
     void Update()
@@ -30,8 +31,14 @@ public class PickUpBook : MonoBehaviour
             }
         }
         else if (Input.GetMouseButtonDown(1))
-        { 
-
+        {
+            if (books.Count <= 0) return;
+            if (currentIndex >= 0 && currentIndex < books.Count)
+            {
+                books[currentIndex].Drop(transform.position);
+                books.RemoveAt(currentIndex);
+                currentIndex--;
+            }
         }
 
     }
