@@ -82,6 +82,6 @@ public class Player : MonoBehaviour
         relative = transform.TransformDirection(relative);
 
         cc.Move((relative + verticalVelocity) * Time.deltaTime);
-        
+        GetComponent<Rigidbody>().velocity = relative + (verticalVelocity * Time.deltaTime);
     }
 }

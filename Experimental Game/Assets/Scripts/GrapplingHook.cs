@@ -44,16 +44,4 @@ public class GrapplingHook : MonoBehaviour
 
        
     }
-
-    void OnControllerColliderHit(ControllerColliderHit hit)
-    {
-        if (hit.normal.y < 0.5f)
-        {
-            going = false;
-            player.Reset();
-            player.enabled = true;
-        }
-
-
-    }
 }
