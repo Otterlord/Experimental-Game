@@ -13,25 +13,16 @@ public class PickUpObject : MonoBehaviour
     public float maxHandHeight;
 
     private GameObject heldObject;
-
-    private int booksHeld = 0;
-
     // Update is called once per frame
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && heldObject == null)
         {
-            print("eh");
             RaycastHit hit;
             Physics.Raycast(Camera.main.transform.position, Camera.main.transform.rotation * Vector3.forward, out hit, distance, grabbable);
             if (hit.collider == null) return;
+            print(hit.collider.gameObject);
             heldObject = hit.collider.gameObject;
-            if (heldObject.CompareTag("Book"))
-            {
-                booksHeld++;
-                heldObject.GetComponent<Book>().Hold();
-                return;
-            }
 
 
             heldObject.GetComponent<Rigidbody>().useGravity = false;
@@ -40,16 +31,9 @@ public class PickUpObject : MonoBehaviour
         }
         else if (Input.GetMouseButtonDown(0) && heldObject != null && heldObject.GetComponent<Rigidbody>() != null)
         {
-            if (heldObject.CompareTag("Book"))
-            {
-                print("eh");
-                booksHeld--;
-                heldObject.GetComponent<Book>().Drop(transform.position);
-                return;
-            }
             heldObject.GetComponent<Rigidbody>().useGravity = true;
             heldObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            heldObject.GetComponent<Rigidbody>().velocity = new Vector3(GetComponent<Rigidbody>().velocity.x, 0, GetComponent<Rigidbody>().velocity.z);
+           
             Destroy(heldObject.GetComponent<FixedJoint>());
             heldObject = null;
         }

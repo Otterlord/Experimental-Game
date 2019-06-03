@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     private Vector3 velocity;
     private Vector3 verticalVelocity;
     public Vector3 offset;
+    public Vector3 relativeV;
 
     private Vector3 input;
     private Vector3 previousNormal = Vector3.up;
@@ -38,6 +39,11 @@ public class Player : MonoBehaviour
     public void Reset()
     {
         velocity = Vector3.zero;
+    }
+
+    public Vector3 GetRelativeVelocity()
+    {
+        return relativeV;
     }
 
     // Update is called once per frame
@@ -80,8 +86,8 @@ public class Player : MonoBehaviour
 
         Vector3 relative = ((Quaternion.FromToRotation(Vector3.up, hit.normal) * velocity));
         relative = transform.TransformDirection(relative);
+        relativeV = relative;
 
         cc.Move((relative + verticalVelocity) * Time.deltaTime);
-        GetComponent<Rigidbody>().velocity = relative + (verticalVelocity * Time.deltaTime);
     }
 }
